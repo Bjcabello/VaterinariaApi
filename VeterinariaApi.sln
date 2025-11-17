@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaApi.Abstractions", "VeterinariaApi.Abstractions\VeterinariaApi.Abstractions.csproj", "{AC7F384D-0195-445C-933F-49DA504B85E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaApi.Repository", "VeterinariaApi.Repository\VeterinariaApi.Repository.csproj", "{DA0184D8-92F1-4D4D-8C3D-B56F41AC2665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaApi.DTOs", "VeterinariaApi.DTOs\VeterinariaApi.DTOs.csproj", "{9D51BD45-4CBC-47FC-9A9B-B068B610772D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaApi.Services", "VeterinariaApi.Services\VeterinariaApi.Services.csproj", "{C5DB46C1-40B4-4FE7-BE66-CBCF47A0F60A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veterinaria.Application", "Veterinaria.Application\Veterinaria.Application.csproj", "{671DD326-77F9-4EDB-B3FD-FBC5A86A0231}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veterinaria.Api", "Veterinaria.Api\Veterinaria.Api.csproj", "{E6983204-BBB8-49C0-8064-A2C50D2CD735}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{D107F4C8-89CC-BEA8-D3D7-CA6B7733353D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC7F384D-0195-445C-933F-49DA504B85E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7F384D-0195-445C-933F-49DA504B85E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7F384D-0195-445C-933F-49DA504B85E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7F384D-0195-445C-933F-49DA504B85E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA0184D8-92F1-4D4D-8C3D-B56F41AC2665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA0184D8-92F1-4D4D-8C3D-B56F41AC2665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA0184D8-92F1-4D4D-8C3D-B56F41AC2665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA0184D8-92F1-4D4D-8C3D-B56F41AC2665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D51BD45-4CBC-47FC-9A9B-B068B610772D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D51BD45-4CBC-47FC-9A9B-B068B610772D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D51BD45-4CBC-47FC-9A9B-B068B610772D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D51BD45-4CBC-47FC-9A9B-B068B610772D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5DB46C1-40B4-4FE7-BE66-CBCF47A0F60A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5DB46C1-40B4-4FE7-BE66-CBCF47A0F60A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5DB46C1-40B4-4FE7-BE66-CBCF47A0F60A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5DB46C1-40B4-4FE7-BE66-CBCF47A0F60A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{671DD326-77F9-4EDB-B3FD-FBC5A86A0231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{671DD326-77F9-4EDB-B3FD-FBC5A86A0231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{671DD326-77F9-4EDB-B3FD-FBC5A86A0231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{671DD326-77F9-4EDB-B3FD-FBC5A86A0231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6983204-BBB8-49C0-8064-A2C50D2CD735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6983204-BBB8-49C0-8064-A2C50D2CD735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6983204-BBB8-49C0-8064-A2C50D2CD735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6983204-BBB8-49C0-8064-A2C50D2CD735}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFC9520A-7A4B-4C24-ADBC-C79B260FA7DA}
+	EndGlobalSection
+EndGlobal

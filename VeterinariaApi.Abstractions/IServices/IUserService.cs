@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using VeterinariaApi.DTOs.Common;
+using VeterinariaApi.DTOs.User;
+
+namespace VeterinariaApi.Abstractions.IServices
+{
+    public interface IUserService
+    {
+        Task<ResultDTO<UserListResponseDTO>> GetAll();
+    }
+}
