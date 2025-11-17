@@ -8,9 +8,8 @@ namespace VeterinariaApi.DTOs.User
 {
     public class UserListResponseDTO
     {
-        public int Id {set; get;}
-        public string Name { set; get; } = null!;
-        public string  LastName {set; get;} = null!;
-        public string Email {set; get;} = null!;
+        public int id { get; set; }
+        public string username { get; set; } = null!;
+        public int role_id { get; set; }
     }
 }

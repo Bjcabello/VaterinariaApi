@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 using VeterinariaApi.Abstractions.IApplication;
 
 namespace Veterinaria.Api.Controllers
