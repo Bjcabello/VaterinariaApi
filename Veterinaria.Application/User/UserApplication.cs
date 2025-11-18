@@ -25,6 +25,11 @@ namespace Veterinaria.Application.User
             return await _useService.Create(request);
         }
 
+        public async Task<ResultDTO<int>> Delete(DeleteDto request)
+        {
+            return await _useService.Delete(request);
+        }
+
         public async Task<ResultDTO<UserListResponseDTO>> GetAll()
         {
             return await _useService.GetAll();

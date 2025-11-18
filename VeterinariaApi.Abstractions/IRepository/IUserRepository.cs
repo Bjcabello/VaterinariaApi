@@ -12,5 +12,6 @@ namespace VeterinariaApi.Abstractions.IRepository
     {
         public Task<ResultDTO<UserListResponseDTO>> GetAll();
         public Task<ResultDTO<int>> Create(UserCreateRequestDto request);
+        public Task<ResultDTO<int>> Delete(DeleteDto request);
     }
 }

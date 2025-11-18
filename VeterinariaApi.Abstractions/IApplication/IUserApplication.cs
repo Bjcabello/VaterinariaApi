@@ -12,6 +12,7 @@ namespace VeterinariaApi.Abstractions.IApplication
     {
         public Task<ResultDTO<UserListResponseDTO>> GetAll();
         public Task<ResultDTO<int>> Create(UserCreateRequestDto request);
+        public Task<ResultDTO<int>> Delete(DeleteDto request);
     }
 
 }

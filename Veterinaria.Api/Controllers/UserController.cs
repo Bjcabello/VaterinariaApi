@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using VeterinariaApi.Abstractions.IApplication;
+using VeterinariaApi.DTOs.Common;
 using VeterinariaApi.DTOs.User;
 
 namespace Veterinaria.Api.Controllers
@@ -26,8 +27,8 @@ namespace Veterinaria.Api.Controllers
             }
             catch (Exception ex)
             {
-            return BadRequest(ex.Message);
-             }
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]
@@ -37,6 +38,21 @@ namespace Veterinaria.Api.Controllers
             try
             {
                 var res = await _userApplication.Create(request);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        public async Task<ActionResult> Delete(DeleteDto request)
+        {
+            try
+            {
+                var res = await _userApplication.Delete(request);
                 return Ok(res);
             }
             catch (Exception ex)

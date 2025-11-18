@@ -33,7 +33,7 @@ namespace VeterinariaApi.Repository.User
                     {
                         while(lector.Read())
                         {
-                            res.Item = = Convert.ToInt32(lector["id"].ToString());
+                            res.Item = Convert.ToInt32(lector["id"].ToString());
                             res.IsSuccess = Convert.ToInt32(lector["id"].ToString()) > 0 ? true: false;
                             res.Message = Convert.ToInt32(lector["id"].ToString()) > 0 ? "Informacion guardada correctamente" : "Informacion no se pudo guardar";
                         }
@@ -43,8 +43,37 @@ namespace VeterinariaApi.Repository.User
             }
             catch (Exception ex)
             {
+                res.IsSuccess = false;
                 res.MessageException = ex.Message;
 
+            }
+            return res;
+        }
+
+        public async Task<ResultDTO<int>> Delete(DeleteDto request)
+        {
+            ResultDTO<int> res = new ResultDTO<int>();
+            try
+            {
+                using (var cn = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@p_id", request.id);
+                    using (var lector =  cn.ExecuteReaderAsync("SP_DELETE_USER", parameters, commandType: System.Data.CommandType.StoredProcedure))
+                    {
+                        while (lector.Result.Read())
+                        {
+                            res.Item = Convert.ToInt32(lector.Result["id"].ToString());
+                            res.IsSuccess = Convert.ToInt32(lector.Result["id"].ToString()) > 0 ? true : false;
+                            res.Message = Convert.ToInt32(lector.Result["id"].ToString()) > 0 ? "Informacion eliminada correctamente" : "Informacion no se pudo eliminar";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                res.IsSuccess = false;  
+                res.MessageException = ex.Message;
             }
             return res;
         }
