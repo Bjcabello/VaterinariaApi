@@ -11,5 +11,6 @@ namespace VeterinariaApi.Abstractions.IRepository
     public interface IUserRepository
     {
         public Task<ResultDTO<UserListResponseDTO>> GetAll();
+        public Task<ResultDTO<int>> Create(UserCreateRequestDto request);
     }
 }

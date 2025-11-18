@@ -14,6 +14,41 @@ namespace VeterinariaApi.Repository.User
         {
             _connectionString = configuration.GetConnectionString("Connection");
         }
+
+        public async Task<ResultDTO<int>> Create(UserCreateRequestDto request)
+        {
+            ResultDTO<int> res = new ResultDTO<int>();
+
+            try
+            {
+                using(var cn = new SqlConnection(_connectionString))
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@p_id", request.id);
+                    parameters.Add("@p_username", request.username);
+                    parameters.Add("@p_password", request.password);
+                    parameters.Add("@p_role_id", request.role_id);
+
+                    using (var lector = await cn.ExecuteReaderAsync("SP_CREATE_USER", parameters, commandType:System.Data.CommandType.StoredProcedure))
+                    {
+                        while(lector.Read())
+                        {
+                            res.Item = = Convert.ToInt32(lector["id"].ToString());
+                            res.IsSuccess = Convert.ToInt32(lector["id"].ToString()) > 0 ? true: false;
+                            res.Message = Convert.ToInt32(lector["id"].ToString()) > 0 ? "Informacion guardada correctamente" : "Informacion no se pudo guardar";
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                res.MessageException = ex.Message;
+
+            }
+            return res;
+        }
+
         public async Task<ResultDTO<UserListResponseDTO>> GetAll()
         {
             await Task.CompletedTask;

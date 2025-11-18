@@ -19,6 +19,11 @@ namespace VeterinariaApi.Services.User
             this.userRepository = userRepository;
         }
 
+        public async Task<ResultDTO<int>> Create(UserCreateRequestDto request)
+        {
+            return await userRepository.Create(request);
+        }
+
         public async Task<ResultDTO<UserListResponseDTO>>GetAll()
         {
             return await userRepository.GetAll();

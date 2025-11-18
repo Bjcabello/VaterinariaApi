@@ -11,5 +11,7 @@ namespace VeterinariaApi.Abstractions.IServices
     public interface IUserService
     {
         Task<ResultDTO<UserListResponseDTO>> GetAll();
+        public Task<ResultDTO<int>> Create(UserCreateRequestDto request);
     }
 }
+

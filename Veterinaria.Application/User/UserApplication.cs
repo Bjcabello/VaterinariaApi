@@ -20,6 +20,11 @@ namespace Veterinaria.Application.User
             _useService = userService;
         }
 
+        public async Task<ResultDTO<int>> Create(UserCreateRequestDto request)
+        {
+            return await _useService.Create(request);
+        }
+
         public async Task<ResultDTO<UserListResponseDTO>> GetAll()
         {
             return await _useService.GetAll();
