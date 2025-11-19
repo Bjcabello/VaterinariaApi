@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VeterinariaApi.Abstractions.IApplication;
 using VeterinariaApi.Abstractions.IServices;
+using VeterinariaApi.DTOs.Auth;
 using VeterinariaApi.DTOs.Common;
 using VeterinariaApi.DTOs.User;
 
@@ -33,6 +34,11 @@ namespace Veterinaria.Application.User
         public async Task<ResultDTO<UserListResponseDTO>> GetAll()
         {
             return await _useService.GetAll();
+        }
+
+        public async Task<AuthResponseDto> Login(LoginRequestDto request)
+        {
+            return await _useService.Login(request);
         }
     }
 }

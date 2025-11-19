@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VeterinariaApi.Abstractions.IRepository;
 using VeterinariaApi.Abstractions.IServices;
+using VeterinariaApi.DTOs.Auth;
 using VeterinariaApi.DTOs.Common;
 using VeterinariaApi.DTOs.User;
 
@@ -34,5 +35,9 @@ namespace VeterinariaApi.Services.User
             return await userRepository.GetAll();
         }
 
+        public async Task<AuthResponseDto> Login(LoginRequestDto request)
+        {
+            return await userRepository.Login(request);
+        }
     }
 }

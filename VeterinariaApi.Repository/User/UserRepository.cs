@@ -1,7 +1,12 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using VeterinariaApi.Abstractions.IRepository;
+using VeterinariaApi.DTOs.Auth;
 using VeterinariaApi.DTOs.Common;
 using VeterinariaApi.DTOs.User;
 
@@ -9,9 +14,11 @@ namespace VeterinariaApi.Repository.User
 {
     public class UserRepository : IUserRepository
     {
+        private readonly IConfiguration configuration;
         private string _connectionString = "";
         public UserRepository(IConfiguration configuration)
         {
+            this.configuration = configuration;
             _connectionString = configuration.GetConnectionString("Connection");
         }
 
@@ -100,6 +107,66 @@ namespace VeterinariaApi.Repository.User
                 res.MessageException = ex.Message;
             }
             return res;
+        }
+        public async Task<UserDetailResponseDto> GetUserByUsername(string username)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@p_username", username);
+
+            using (var cn = new SqlConnection(_connectionString))
+            {
+                var query = await cn.QueryAsync<UserDetailResponseDto>("SP_GET_USER_BY_USERNAME", parameters, commandType: System.Data.CommandType.StoredProcedure);
+                if (query.Any())
+                {
+                    return query.First();
+                }
+                throw new Exception("Usuario o contrasena incorrectos");
+            }
+            
+        }
+        public async Task<UserDetailResponseDto> ValidateUser(LoginRequestDto request)
+        {
+            UserDetailResponseDto user = await GetUserByUsername(request.username);
+            if(user.password == request.password)
+            {
+                return user;
+            }
+            throw new Exception("Usuario o contrasena incorrectos");
+        }
+
+        public async Task<TokenResponseDto> GenerateToken(UserDetailResponseDto request)
+        {
+            var key = configuration.GetSection("JWTSettings:key").Value;
+            var keyBytes = Encoding.ASCII.GetBytes(key);
+
+            var claims = new ClaimsIdentity();
+            claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, request.id.ToString()));
+            claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, request.username));
+            claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, request.rol_id.ToString()));
+
+            var credentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = claims,
+                Expires = DateTime.UtcNow.AddHours(2),
+                SigningCredentials = credentials
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenConfig = tokenHandler.CreateToken(tokenDescriptor);
+            string token = tokenHandler.WriteToken(tokenConfig);
+            return await Task.FromResult(new TokenResponseDto { Token = token });
+        }
+
+        public async Task<AuthResponseDto> Login(LoginRequestDto request)
+        {
+            UserDetailResponseDto user = await ValidateUser(request);
+            var token = await GenerateToken(user);
+            return new AuthResponseDto
+            {
+                User = user,
+                Token = token.Token
+            };
         }
     }
 }
